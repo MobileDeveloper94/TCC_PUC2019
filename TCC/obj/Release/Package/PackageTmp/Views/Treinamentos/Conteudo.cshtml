@@ -1,0 +1,67 @@
+﻿@model TCC.Models.Conteudo
+
+@{
+    ViewBag.Title = "Conteúdo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Conteudo</h2>
+
+<div>
+    <h4>Conteudo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Treinamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Treinamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cod_Modulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cod_Modulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConteudoExterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConteudoExterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    <a href="/Treinamentos/Details/@Model.Id_Treinamento">Voltar</a>
+</p>

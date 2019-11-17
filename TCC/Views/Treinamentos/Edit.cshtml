@@ -1,0 +1,302 @@
+﻿@model TCC.Models.Treinamento
+
+@{
+    ViewBag.Title = "Editar Treinamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar</h2>
+
+
+    <div>
+        <ul class="nav nav-tabs" id="Abas" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#treinamento" aria-controls="treinamento">Treinamento</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#conteudos" aria-controls="conteudos">Conteúdos</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#avaliacoes" aria-controls="avaliacoes">Avaliações</a></li>
+        </ul>
+        <br />
+    </div>
+
+    <div  class="tab-content" id="contents">
+
+        <div id="treinamento" class="tab-pane fade show active" role="tabpanel" aria-labelledby="treinamento-tab">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Categoria, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataFim, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataFim, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="flgFim">
+                        @Html.LabelFor(model => model.Indeterminado, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.Indeterminado)
+                                @Html.ValidationMessageFor(model => model.Indeterminado, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Instrutor, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Instrutor, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Instrutor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Modulos, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Modulos, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Modulos, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PalavrasChave, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PalavrasChave, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PalavrasChave, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Salvar" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="conteudos" class="tab-pane fade" role="tabpanel" aria-labelledby="conteudos-tab">
+            <a href="#" id="btnNewConteudo" class="btn btn-primary">Criar Novo</a>
+            <p> </p>
+            <div class="form-horizontal" id="formConteudo">
+
+                <input type="hidden" class="form-control" id="Id_Conteudo" value="0" />
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Descrição</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="Descricao_Conteudo" />
+                        <span class="text-danger" id="validate_Descricao_Conteudo"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Módulo</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="Modulo_Conteudo">
+                            @{
+                                for (var i = 1; i < Model.Modulos + 1; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            }
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-link" data-toggle="pill" href="#pills-link" role="tab" aria-controls="pills-link" aria-selected="true" onclick="LinkOrArquivo(0)">Link externo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-arquivo" data-toggle="pill" href="#pills-arquivo" role="tab" aria-controls="pills-arquivo" aria-selected="false" onclick="LinkOrArquivo(1)">Upload arquivo</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group" id="formArquivo" style="display:none">
+                    <label class="control-label col-md-2">Selecione o Arquivo</label>
+                    <div class="col-md-10">
+                        <form id="formUpdate" method="post" enctype="multipart/form-data" action="/treinamentos/Upload">
+                            <input type="file" class="form-control-file" id="Arquivo_Conteudo" name="Arquivo_Conteudo">
+                            <input type="hidden" class="form-control-file" id="Id_Treinamento" name="Id_Treinamento" value="@Model.Id">
+
+                        </form>
+                        <span class="text-danger" id="validate_Arquivo_Conteudo"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" id="nomArquivo">Link</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="Link_Conteudo" />
+                        <span class="text-danger" id="validate_Link_Conteudo"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display:none">
+                    <label class="control-label col-md-2">Conteúdo externo</label>
+                    <div class="col-md-10">
+                        <input type="checkbox" class="form-control" id="Conteudo_Externo" />
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Observações</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="Observacoes_Conteudo" />
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a href="#" class="btn btn-primary" id="btnSalvarConteudo">Salvar</a>
+                        <a href="#" class="btn btn-dark" id="btnFecharConteudo">Fechar</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Cód</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Nº Módulo</th>
+                        <th scope="col">Arquivo/Link</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="listaConteudo"></tbody>
+            </table>
+
+        </div>
+
+        <div id="avaliacoes" class="tab-pane fade" role="tabpanel" aria-labelledby="avaliacoes-tab">
+            <a href="#" id="btnNewAvaliacao" class="btn btn-primary">Criar Nova</a>
+            <p> </p>
+            <div class="form-horizontal" id="formAvaliacao">
+
+                <input type="hidden" class="form-control" id="Id_Avaliacao" value="0" />
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Módulo</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="Modulo_Avaliacao">
+                            @{
+                                for (var i = 1; i < Model.Modulos + 1; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            }
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Descrição</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="Descricao_Avaliacao" />
+                        <span class="text-danger" id="validate_Descricao_Avaliacao"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" id="btnQuestoes">
+                    <label class="control-label col-md-2"> </label>
+                    <div class="col-md-10">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-questoes">Incluir / Editar Questões</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a href="#" class="btn btn-primary" id="btnSalvarAvaliacao">Salvar</a>
+                        <a href="#" class="btn btn-dark" id="btnFecharAvaliacao">Fechar</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Cód</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Nº Módulo</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="listaAvaliacao"></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+<div>
+    @Html.ActionLink("Voltar para a lista", "Index")
+</div>
+
+
+<div class="modal fade modal-questoes" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+           
+        </div>
+    </div>
+</div>
+
+
+<!-- Script da página-->
+<script src="~/Scripts/pages/Treinamentos-Edit.js"></script>
+
+<style>
+    #formConteudo, #formAvaliacao, #btnQuestoes {
+        display: none
+    }
+
+    .modal-content {
+        height: 80vh;
+    }
+</style>

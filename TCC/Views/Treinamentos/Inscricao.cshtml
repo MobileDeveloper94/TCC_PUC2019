@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model TCC.Models.Treinamento
+
+@{
+    ViewBag.Title = "Inscrição";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="formInscricao">
+
+    <h2>Inscricao</h2>
+
+    <hr />
+    <form method="post" action="/Treinamentos/Inscricao">
+        <input type="hidden" id="Id_Treinamento" name="Id_Treinamento" value="@Model.Id" />
+        <input type="hidden" id="Id_Usuario" name="Id_Usuario" value="@User.Identity.GetUserId()" />
+
+        Confirme que tem interesse no treinamento <b>@Html.DisplayFor(model => model.Titulo)</b> clicando abaixo.
+
+        <br />
+
+        <span class="text-danger" id="validate"></span>
+
+        <br />
+
+        <input type="submit" class="btn btn-primary" value="Fazer Inscrição" id="btnInscrever" />
+
+    </form>
+</div>
+
+<style>
+    #formInscricao{
+        display:none
+    }
+</style>
+<!--Script pagina-->
+<script src="~/Scripts/pages/Treinamentos-Inscricao.js"></script>

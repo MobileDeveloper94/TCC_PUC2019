@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model TCC.Models.Avaliacao
+
+@{
+    ViewBag.Title = "Avaliação";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Descricao)</h2>
+
+<hr />
+
+<div id="avaliacao">
+
+</div>
+
+<div class="enviar">
+    <span class="text-danger" id="validate"></span>
+    <br />
+    <a class="btn btn-primary" id="btnEnviar">Enviar respostas</a>
+</div>
+
+<input type="hidden" id="Id_Avaliacao" value="@Model.Id" />
+<input type="hidden" id="Id_Treinamento" value="@Model.Id_Treinamento" />
+<input type="hidden" id="Id_Usuario" value="@User.Identity.GetUserId()" />
+
+
+<!--Script página-->
+<script src="~/Scripts/pages/Treinamentos-Avaliacao.js"></script>
+
+<style>
+    .box-questao, .enviar {
+        margin-top: 40px;
+    }
+</style>

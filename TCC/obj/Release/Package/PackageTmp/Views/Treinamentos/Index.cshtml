@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model IEnumerable<TCC.Models.Treinamento>
+
+@{
+    ViewBag.Title = "Treinamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Treinamentos cadastrados</h2>
+<hr />
+@if (User.IsInRole("Administrador"))
+{
+    <p>
+           <a class="btn btn-primary" href="/Treinamentos/Create">Criar Novo</a>
+    </p>
+}
+
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Indeterminado)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Instrutor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modulos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PalavrasChave)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicio)
+                </td>
+                <td>
+                    @if (item.Indeterminado == true)
+                    {
+                        <span class="text-info">Indeterminado</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.DataFim)
+                    }
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Indeterminado)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Instrutor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modulos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PalavrasChave)
+                </td>
+                <td>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                       
+
+                        <a href="@Url.Action("Edit",new { id = item.Id })"><i class="fa fa-pencil"></i></a>
+                        <br />
+                        <a href="@Url.Action("Delete",new { id = item.Id })"><i class="fa fa-trash"></i></a>
+
+                    }
+
+                    @if (User.IsInRole("Usuário"))
+                    {
+                        
+                        <a href="@Url.Action("Details",new { id = item.Id })"><i class="fa fa-desktop"></i> Acessar</a>
+
+                    }
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<head>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <input type="hidden" id="Id_Avaliacao" value="@ViewBag.Id_Avaliacao" />
+
+    <div class="container">
+        <h2>Questões cadastradas</h2>
+        <hr />
+
+        <a href="#" id="btnNewQuestao" class="btn btn-primary">Criar Nova</a>
+        <p> </p>
+        <div class="form-horizontal" id="formQuestao">
+
+            <input type="hidden" class="form-control" id="Id_Questao" value="0" />
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Enunciado</label>
+                <div class="col-md-10">
+                    <textarea class="form-control" id="Enunciado_Questao"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Alternativa</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="Alternativa1_Questao" />
+
+                </div>
+                <div class="col-md-1">
+                    <input type="radio" name="Flg_Correta" id="Flg_Correta" value="1" checked="checked" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Alternativa</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="Alternativa2_Questao" />
+
+                </div>
+                <div class="col-md-1">
+                    <input type="radio" name="Flg_Correta" id="Flg_Correta" value="2" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Alternativa</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="Alternativa3_Questao" />
+
+                </div>
+                <div class="col-md-1">
+                    <input type="radio" name="Flg_Correta" id="Flg_Correta" value="3" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Alternativa</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="Alternativa4_Questao" />
+
+                </div>
+                <div class="col-md-1">
+                    <input type="radio" name="Flg_Correta" id="Flg_Correta" value="4" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Alternativa</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="Alternativa5_Questao" />
+
+                </div>
+                <div class="col-md-1">
+                    <input type="radio" name="Flg_Correta" id="Flg_Correta" value="5" />
+                </div>
+            </div>
+            <span class="text-danger col-md-12 col-md-offset-2" id="validate"></span>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="#" class="btn btn-primary" id="btnSalvarQuestao">Salvar</a>
+                    <a href="#" class="btn btn-dark" id="btnFechar">Fechar</a>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Cód</th>
+                    <th scope="col">Enunciado</th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody id="listaQuestao"></tbody>
+        </table>
+    </div>
+
+
+    
+
+
+
+</body>
+<style>
+    #formQuestao {
+        display: none
+    }
+</style>
+
+<!-- Script da página-->
+<script src="~/Scripts/pages/Treinamentos-EditQuestoes.js"></script>
+

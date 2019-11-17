@@ -1,0 +1,89 @@
+﻿body {
+    padding-top: 0;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.menu, .dropdown-item, .dropdown-menu {
+    background-color: #009999 !important;
+}
+
+.dropdown-item{
+    color: #f2f2f2!important;
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-toggler {
+    color: #f2f2f2 !important;
+}
+
+    .navbar-light .navbar-nav .nav-link:hover, .dropdown-item:hover {
+        color: #33ccff !important;
+    }
+
+
+.body-content {
+    padding-top: 80px;
+}
+
+.btn-primary {
+    background-color: #0086b3 !important;
+    border: solid 1px #fff !important;
+}
+
+    .btn-primary:hover {
+        
+        background-color: #33ccff !important;
+        border: solid 1px #33ccff !important;
+    }
+
+h2 {
+    color: #666;
+    font-size: 24px;
+    font-family: 'Eras ITC';
+    border-left: solid 5px #0086b3;
+    padding-left: 4px;
+}
+
+h1 {
+    color: #009999;
+    font-size: 36px;
+    font-family: 'Eras ITC';
+}
+
+#btnLogin{
+    color: #f2f2f2!important;
+    font-weight: 700;
+
+}
+
+    #btnLogin:hover {
+        color: #33ccff !important;
+        text-decoration: none;
+    }
+
+.rodape {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    position: relative;
+    width: 100vw;
+}

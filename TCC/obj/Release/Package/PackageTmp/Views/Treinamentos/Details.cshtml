@@ -1,0 +1,168 @@
+﻿@using Microsoft.AspNet.Identity
+
+@model TCC.Models.Treinamento
+
+@{
+    ViewBag.Title = "Treinamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Titulo)</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Instrutor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Instrutor)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Categoria)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DataInicio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </dt>
+            @if (Model.Indeterminado == true)
+            {
+                <dd>Indeterminada</dd>
+            }
+            else
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.DataFim)
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Modulos)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modulos)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PalavrasChave)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PalavrasChave)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <div id="avaliacoes" class="rightcolum">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    Avaliação geral do treinamento
+                </dt>
+
+                <dd id="vlrNota">
+                    
+                </dd>
+            </dl>
+            <a class="btn btn-primary btn-sm" id="btnAvaliar" data-toggle="modal" data-target="#modalAvaliar" value="1">Deixe sua avaliação</a>
+        </div>
+        <div id="comentarios" class="rightcolum">
+            <dl class="dl-horizontal" id="comentariosList">
+
+                <dt>
+                    Comentários sobre o treinamento
+                </dt>
+                
+                
+            </dl>
+            <a class="btn btn-primary btn-sm" id="btnComentario" data-toggle="modal" data-target="#modalAvaliar" value="2">Deixe um comentário</a>
+        </div>
+        <div id="progresso" class="rightcolum">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    Seu progresso
+                </dt>
+
+                <dd id="numAcessos">
+                    
+                </dd>
+                <dd id="numAcertos">
+                    
+                </dd>
+                <dt id="aprovado">
+                    
+                </dt>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<input type="hidden" id="Id_Treinamento" value="@Model.Id" />
+<input type="hidden" id="Num_Modulos" value="@Model.Modulos" />
+<input type="hidden" id="Id_Usuario" value="@User.Identity.GetUserId()"/>
+
+<div>
+    <div class="accordion" id="modulos">
+        
+        
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Voltar para lista de treinamentos", "Index")
+</p>
+
+
+<!--Modal-->
+<div class="modal fade" id="modalAvaliar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nova mensagem</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .rightcolum{
+        margin-bottom: 30px;
+    }
+    #btnComentario, #btnAvaliar{
+        display: none;
+    }
+</style>
+
+<!--Script página-->
+<script src="~/Scripts/pages/Treinamentos-Details.js"></script>

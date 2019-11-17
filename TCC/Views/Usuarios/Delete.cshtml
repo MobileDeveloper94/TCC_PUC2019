@@ -1,0 +1,44 @@
+﻿@model TCC.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Excluir usuário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir usuário</h2>
+<hr />
+
+<h3 class="text-danger">Esta ação não pode ser desfeita. Tem certeza que deseja excluir este usuário?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nome
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            E-mail
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" /> <a href="/Usuarios/Index" class="btn btn-dark">Voltar</a>
+        </div>
+    }
+</div>
